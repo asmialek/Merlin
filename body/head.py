@@ -18,9 +18,10 @@ class Head(object):
         if intent == 'greet':
             self.Mouth.greet()
         elif intent == 'shutdown':
+            self.logger.info('Wyłączam system...')
             sys.exit(0)
         else:
-            self.logger.info('Nie wiem co mam robić.')
+            self.logger.info('Nie wiem jak mam to zrobić.')
 
 
     # def chceck_intetnt(self, command):

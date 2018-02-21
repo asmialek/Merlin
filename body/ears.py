@@ -1,3 +1,4 @@
+from os import path
 import logging
 import speech_recognition
 from wit import Wit
@@ -15,9 +16,9 @@ class Ears(object):
             self.logger.debug("Słucham!")
             audio = self.rec.listen(source)
             self.logger.debug("Myślę...")
-            with open("microphone-results.wav", "wb") as f:
+            with open(path.join('local', 'microphone-results.wav'), 'wb') as f:
                 f.write(audio.get_wav_data())
-            with open("microphone-results.wav", "rb") as f:
+            with open(path.join('local', 'microphone-results.wav'), 'rb') as f:
                 rtr = client.post_speech(f)
             # print(rtr)
             text = rtr['_text']
