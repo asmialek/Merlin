@@ -10,20 +10,27 @@ class Ears(object):
         self.rec = speech_recognition.Recognizer()
         self.wit_token = 'QHNATOFV7VOCF7YWRR6N3EPCER2GTTS7'
 
-    def listen(self):
-        client = Wit(token=self.wit_token)
-        with speech_recognition.Microphone() as source:
-            self.logger.debug("Słucham!")
-            audio = self.rec.listen(source)
+    def listen(self, voice):
+        client = Wit(self.wit_token)
+        if voice:
+            with speech_recognition.Microphone() as source:
+                self.logger.debug("Słucham!")
+                audio = self.rec.listen(source)
+                self.logger.debug("Myślę...")
+                with open(path.join('local', 'microphone-results.wav'), 'wb') as f:
+                    f.write(audio.get_wav_data())
+                with open(path.join('local', 'microphone-results.wav'), 'rb') as f:
+                    rtr = client.speech(f)
+                # print(rtr)
+        else:
+            self.logger.debug("Czytam!")
+            message = input('>>')
             self.logger.debug("Myślę...")
-            with open(path.join('local', 'microphone-results.wav'), 'wb') as f:
-                f.write(audio.get_wav_data())
-            with open(path.join('local', 'microphone-results.wav'), 'rb') as f:
-                rtr = client.post_speech(f)
-            # print(rtr)
-            text = rtr['_text']
-            intent = self.get_intent(rtr)
-        # print(text, intent)
+            rtr = client.message(message)
+        print(rtr)
+        text = rtr['_text']
+        intent = self.get_intent(rtr)
+        print(text, intent)
         return text, intent, rtr
 
     def get_intent(self, rtr):

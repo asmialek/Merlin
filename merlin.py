@@ -5,8 +5,6 @@ from body.head import Head
 
 if __name__ == "__main__":
     Merlin = Body()
-    # Merlin.Head.Mouth.speak('Cześć Adam!')
+    # Merlin.head.mouth.say('Cześć Adam!')
     while True:
-        Merlin.head.think()
-    # Merlin.Head.Ears.listen()
-    # Merlin.Head.Mouth.test('Cześć Adam')
+        Merlin.head.think(voice=False)

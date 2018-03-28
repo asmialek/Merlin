@@ -3,7 +3,7 @@ from singleton_decorator import singleton
 
 from ears import Ears
 from mouth import Mouth
-# from brain import Brain
+from brain import Brain
 
 @singleton
 class Head(object):
@@ -15,8 +15,8 @@ class Head(object):
 
         # self.Mouth.greet()
 
-    def think(self):
-        text, intent, whole = self.ears.listen()
+    def think(self, voice=True):
+        text, intent, whole = self.ears.listen(voice)
         try:
             getattr(self.brain, intent, NotImplementedError)()
         except NotImplementedError:
