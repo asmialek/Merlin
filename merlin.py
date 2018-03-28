@@ -7,6 +7,6 @@ if __name__ == "__main__":
     Merlin = Body()
     # Merlin.Head.Mouth.speak('Cześć Adam!')
     while True:
-        Merlin.Head.think()
+        Merlin.head.think()
     # Merlin.Head.Ears.listen()
     # Merlin.Head.Mouth.test('Cześć Adam')
