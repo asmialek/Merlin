@@ -7,6 +7,20 @@ from singleton_decorator import singleton
 
 @singleton
 class Ears(object):
+    """Acts as a voice recognizer and intent parser. Currently it uses `Wit.ai`
+    service for voice recognition, as it also uses machine learning for intent
+    processing and keyword analysis.
+
+    Args:
+        voice (bool): `True` for voice and `False` for text input
+
+    Attributes:
+        logger (object): `logging` instance
+        rec (object): `speech_recognition` instance
+        wit_token (str): authorisation token for `Wit.ai` Merlin app
+        voice (bool): `True` for voice and `False` for text input
+
+    """
     def __init__(self, voice):
         self.logger = logging.getLogger(self.__class__.__name__)
         self.rec = speech_recognition.Recognizer()
@@ -36,22 +50,35 @@ class Ears(object):
         # print(rtr)
         # print('---')
         text = rtr['_text']
-        intent, entities = self.get_wit_intent(rtr)
+        intent, entities = self.get_wit_intent(rtr, text)
         # print(text, '->', intent)
         # print('---')
         # print(entities)
         # print('---')
         return text, intent, entities
 
-    def get_wit_intent(self, rtr):
+    def get_wit_intent(self, rtr, text):
+        """Gets intent and keyword values from `pywit` return.
+
+        Args:
+            rtr:
+            text:
+
+        Returns:
+
+
+        """
         try:
             entities_dict = rtr['outcomes'][0]['entities']
-            intent = entities_dict['intent'][0]['value']
             kwargs_dict = {}
             for item in entities_dict:
                 kwargs_dict[item] = entities_dict[item][0]['value']
-            del kwargs_dict['intent']
+            intent = kwargs_dict.pop('intent')
+            # del kwargs_dict['intent']
             return intent, kwargs_dict
         except (KeyError, IndexError):
             self.logger.debug('Nie zrozumiałem intencji...')
-            return None
+            raise self.IntentError('input \"' + text + '\" returned no intent')
+
+    class IntentError(Exception):
+        pass

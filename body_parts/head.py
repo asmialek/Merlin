@@ -21,5 +21,5 @@ class Head(object):
         text, intent, entities = self.ears.listen()
         try:
             getattr(self.brain, intent, NotImplementedError)(**entities)
-        except NotImplementedError:
+        except [NotImplementedError, self.ears.IntentError]:
             self.logger.info('Nie wiem jak mam to zrobić.')

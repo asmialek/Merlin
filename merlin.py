@@ -1,8 +1,8 @@
-from body.body import Body
+from body_parts.body import Body
 
 if __name__ == "__main__":
-    voice = True
-    # voice = False
+    # voice = True
+    voice = False
     Merlin = Body(voice=voice)
     # Merlin.head.mouth.say('Cześć Adam!')
     while True:

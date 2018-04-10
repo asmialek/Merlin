@@ -1,7 +1,7 @@
 import logging
 import sys
 import datetime
-from synapses import *
+from brain_synapses import *
 from singleton_decorator import singleton
 
 
@@ -9,19 +9,25 @@ from singleton_decorator import singleton
 class Brain(object):
     """Acts as a list of possible Merlin actions.
 
-    If Merlin has to do something, add a method for it in here.
+    If Merlin has to do any task, add a method for it in here. They shall bear
+    same name as the corresponding `Wit.ai` intent, to be compatible with
+    `head.think()` method.
+
+    Args:
+        ears (object): object of `Ears` class, passed in `Head` init method
+        mouth (object): object of `Mouth` class, passed in `Head` init method
 
     """
     def __init__(self, ears, mouth):
         self.logger = logging.getLogger(self.__class__.__name__)
-        self.ears = mouth
+        self.ears = ears
         self.mouth = mouth
         self.weather_synapse = weather.WeatherSynapse()
-        self.who = 'Adam'
+
+        self.user = 'Adam'
 
     def greet(self, **kwargs):
-        self.mouth.say('Cześć ' + self.who)
-        self.who = 'Dominika'
+        self.mouth.say('Cześć ' + self.user)
 
     def get_weather(self, **kwargs):
         if 'location' in kwargs.keys():
