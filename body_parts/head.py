@@ -2,9 +2,9 @@ import logging
 import sys
 from singleton_decorator import singleton
 
-from ears import Ears
-from mouth import Mouth
-from brain import Brain
+from body_parts.ears import Ears
+from body_parts.mouth import Mouth
+from body_parts.brain import Brain
 
 
 @singleton

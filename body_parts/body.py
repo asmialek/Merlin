@@ -1,7 +1,7 @@
 import logging
 from singleton_decorator import singleton
 
-from head import Head
+from body_parts.head import Head
 
 
 @singleton

@@ -10,6 +10,9 @@ import googletrans
 
 
 class WeatherSynapse(object):
+    """
+    Module is using OpenWeatherApi, from physicals.openweathermap.org.
+    """
     def __init__(self):
         self.api_key = '4f98b6ad217df75186d8e3fb52b7a9a8'
         self.owm = pyowm.OWM(API_key=self.api_key,

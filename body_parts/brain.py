@@ -1,8 +1,9 @@
 import logging
 import sys
 import datetime
-from brain_synapses import *
 from singleton_decorator import singleton
+
+from body_parts.brain_synapses import weather_synapse
 
 
 @singleton
@@ -22,7 +23,7 @@ class Brain(object):
         self.logger = logging.getLogger(self.__class__.__name__)
         self.ears = ears
         self.mouth = mouth
-        self.weather_synapse = weather.WeatherSynapse()
+        self.weather_synapse = weather_synapse.WeatherSynapse()
 
         self.user = 'Adam'
 
@@ -56,6 +57,9 @@ class Brain(object):
             self.mouth.say('Dnia {} w {} prognoza to {}'.format(
                 date_and_time.date(), location, status))
         self.mouth.say('Temperatura to ' + temp + ' stopni Celciusza')
+
+    def power_on(self, item):
+        pass
 
     def shutdown(self, **kwargs):
         self.logger.info('Wyłączam system...')

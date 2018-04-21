@@ -80,5 +80,5 @@ class Ears(object):
             self.logger.debug('Nie zrozumiałem intencji...')
             raise self.IntentError('input \"' + text + '\" returned no intent')
 
-    class IntentError(Exception):
+    class IntentError(BaseException):
         pass
