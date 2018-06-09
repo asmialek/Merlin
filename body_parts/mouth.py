@@ -14,7 +14,7 @@ class Mouth(object):
         self.voice = voice
 
     def say(self, text):
-        self.logger.info('Mówię: ' + text)
+        self.logger.debug('Mówię: ' + text)
         if self.voice:
             self.speech_engine.say(text)
             self.speech_engine.runAndWait()

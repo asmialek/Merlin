@@ -19,10 +19,13 @@ class Brain(object):
         mouth (object): object of `Mouth` class, passed in `Head` init method
 
     """
-    def __init__(self, ears, mouth):
+    def __init__(self, ears, mouth, home):
         self.logger = logging.getLogger(self.__class__.__name__)
         self.ears = ears
         self.mouth = mouth
+
+        self.home = home
+
         self.weather_synapse = weather_synapse.WeatherSynapse()
 
         self.user = 'Adam'
@@ -60,6 +63,9 @@ class Brain(object):
 
     def power_on(self, item):
         pass
+
+    def test_system(self):
+        self.home.test_item()
 
     def shutdown(self, **kwargs):
         self.logger.info('Wyłączam system...')

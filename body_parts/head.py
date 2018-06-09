@@ -9,17 +9,17 @@ from body_parts.brain import Brain
 
 @singleton
 class Head(object):
-    def __init__(self, voice):
+    def __init__(self, voice, home):
         self.logger = logging.getLogger(self.__class__.__name__)
         self.ears = Ears(voice)
         self.mouth = Mouth(voice)
-        self.brain = Brain(self.ears, self.mouth)
+        self.brain = Brain(self.ears, self.mouth, home)
 
         # self.Mouth.greet()
 
     def think(self, voice=True):
-        text, intent, entities = self.ears.listen()
         try:
+            text, intent, entities = self.ears.listen()
             getattr(self.brain, intent, NotImplementedError)(**entities)
-        except [NotImplementedError, self.ears.IntentError]:
+        except (NotImplementedError, self.ears.IntentError):
             self.logger.info('Nie wiem jak mam to zrobić.')

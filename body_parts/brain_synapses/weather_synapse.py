@@ -37,7 +37,7 @@ class WeatherSynapse(object):
         temp_avg = temp['temp']
         temp_min = temp['temp_min']
         temp_max = temp['temp_max']
-        print(status, temp_avg, temp_min, temp_max)
+        # print(status, temp_avg, temp_min, temp_max)
         return status, temp_avg, temp_min, temp_max
 
     def get_weather_at_day(self, location, date_and_time):
@@ -50,7 +50,7 @@ class WeatherSynapse(object):
         temp_avg = temp['temp']
         temp_min = temp['temp_min']
         temp_max = temp['temp_max']
-        print(status, temp_avg, temp_min, temp_max)
+        # print(status, temp_avg, temp_min, temp_max)
         return status, temp_avg, temp_min, temp_max
 
 

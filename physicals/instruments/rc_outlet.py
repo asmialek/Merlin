@@ -8,4 +8,12 @@ class RCOutlet(object):
 
     def power(self, state=False):
         if state:
-            self.controller.write('')
+            state_char = 'a'
+        else:
+            state_char = 'b'
+        msg = 'd' + chr(self.id_number) + state_char
+        self.controller.write(msg)
+
+    def test_item(self):
+        self.power(True)
+        self.power(False)

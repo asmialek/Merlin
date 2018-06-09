@@ -25,5 +25,6 @@ class Room(object):
                                  f'added to the house.')
         self.rc_outlets.append(outlet_obj)
 
-    # def test_item(self):
-    #     for outlet in
+    def test_item(self):
+        for outlet in self.rc_outlets:
+            outlet.test_item()

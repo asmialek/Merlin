@@ -14,7 +14,8 @@ class Body(object):
         Consider moving logging initialisation from `__init__.py` to Body.
 
     """
-    def __init__(self, voice=True):
+    def __init__(self, voice=True, home=None):
         self.logger = logging.getLogger(self.__class__.__name__)
         self.logger.info('Zaczynam działać!')
-        self.head = Head(voice)
+        self.home = home
+        self.head = Head(voice, home)
